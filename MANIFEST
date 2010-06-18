@@ -1,0 +1,8 @@
+Changes
+Makefile.PL
+MANIFEST
+MotionSensor.xs
+ppport.h
+README
+t/Mac-MotionSensor.t
+lib/Mac/MotionSensor.pm
