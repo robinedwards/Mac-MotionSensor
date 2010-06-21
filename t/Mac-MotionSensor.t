@@ -11,9 +11,11 @@ use warnings;
 use Test::More tests => 1;
 BEGIN { use_ok('Mac::MotionSensor') };
 
-diag "x: ".Mac::MotionSensor::get_raw_x();
-diag "y: ".Mac::MotionSensor::get_raw_y();
-diag "z: ".Mac::MotionSensor::get_raw_z();
+my $type =  Mac::MotionSensor::detect_sms();
+diag "type: $type".
+diag "x: ".Mac::MotionSensor::get_raw_x($type);
+diag "y: ".Mac::MotionSensor::get_raw_y($type);
+diag "z: ".Mac::MotionSensor::get_raw_z($type);
 
 #########################
 

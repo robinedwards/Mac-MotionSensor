@@ -3,6 +3,8 @@ Makefile.PL
 MANIFEST
 MotionSensor.xs
 ppport.h
+unimotion.h
+unimotion.c
 README
 t/Mac-MotionSensor.t
 lib/Mac/MotionSensor.pm

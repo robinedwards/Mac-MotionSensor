@@ -1,26 +1,22 @@
-use 5.008001;
+use 5.008000;
 use ExtUtils::MakeMaker;
-# See lib/ExtUtils/MakeMaker.pm for details of how to influence
-# the contents of the Makefile that is written.
 
-my $SDK = `ls /Developer/SDKs | sort -r | head -n 1`;
-chomp($SDK);
+my $bits_are_64 = unpack("L!", pack("LL", 0x12345678, 0x9ABCDEF)) >= 2**32;
 
+if ($bits_are_64) {
+    print '-' x 80 . "\n";
+    print "64 BIT PERL, BOLLOCKS. THIS *PROBABLY* WONT WORK!\n";
+    print '-' x 80 . "\n";
+}
 
 WriteMakefile(
     NAME              => 'Mac::MotionSensor',
     VERSION_FROM      => 'lib/Mac/MotionSensor.pm', # finds $VERSION
-    PREREQ_PM         => {}, # e.g., Module::Name => 1.1
+    PREREQ_PM         => {}, 
     ($] >= 5.005 ?     ## Add these new keywords supported since 5.005
       (ABSTRACT_FROM  => 'lib/Mac/MotionSensor.pm', # retrieve abstract from module
-       AUTHOR         => 'Robin Edwards <rob@london.net-a-porter.com>') : ()),
-    LIBS              => [''], # e.g., '-lm'
-    DEFINE            => '-DPERL_DARWIN', # e.g., '-DHAVE_SOMETHING'
-	# Un-comment this if you add C files to link with later:
-    CCFLAGS           => "-Wall -fno-common -fno-strict-aliasing -pipe -fstack-protector -arch x86_64 "
-                        ."-isysroot /Developer/SDKs/$SDK ",
-    LDDLFLAGS         => "-bundle -undefined dynamic_lookup -fstack-protector -arch x86_64 "
-                        ."-Wl,-syslibroot,/Developer/SDKs/$SDK,-framework,IOKit,-framework,CoreFoundation",
-#    OPTIMIZE          => '-Os',
-    OBJECT            => 'MotionSensor.o motionsimple.o unimotion.o', # link all the C files too
+       AUTHOR         => 'Robin Edwards <robin.ge@gmail.com>') : ()),
+    LIBS              => [''],
+	LDDLFLAGS         => '-bundle -flat_namespace -undefined dynamic_lookup -framework CoreFoundation -framework IOKit',
+    OBJECT            => '$(O_FILES)',
 );
