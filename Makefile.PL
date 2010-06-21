@@ -4,7 +4,7 @@ use ExtUtils::MakeMaker;
 my $bits_are_64 = unpack("L!", pack("LL", 0x12345678, 0x9ABCDEF)) >= 2**32;
 
 if ($bits_are_64) {
-    die "x86_64 BOLLOCKS. THIS WONT WORK!";
+    die "x86_64 damn, this probably won't work!";
 }
 
 WriteMakefile(
