@@ -1,6 +1,6 @@
 package Mac::MotionSensor;
 
-use 5.012001;
+use 5.008001;
 use strict;
 use warnings;
 
