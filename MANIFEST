@@ -6,5 +6,5 @@ ppport.h
 unimotion.h
 unimotion.c
 README
-t/Mac-MotionSensor.t
+t/00-use.t
 lib/Mac/MotionSensor.pm

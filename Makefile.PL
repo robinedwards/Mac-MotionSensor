@@ -17,6 +17,6 @@ WriteMakefile(
       (ABSTRACT_FROM  => 'lib/Mac/MotionSensor.pm', # retrieve abstract from module
        AUTHOR         => 'Robin Edwards <robin.ge@gmail.com>') : ()),
     LIBS              => [''],
-	LDDLFLAGS         => '-bundle -flat_namespace -undefined dynamic_lookup -framework CoreFoundation -framework IOKit',
+	LDDLFLAGS         => '-bundle -flat_namespace -undefined dynamic_lookup -framework CoreFoundation -framework IOKit -arch i386',
     OBJECT            => '$(O_FILES)',
 );
