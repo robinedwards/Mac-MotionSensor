@@ -1,81 +1,98 @@
 package Mac::MotionSensor;
-
-use 5.008001;
+use 5.008008;
 use strict;
 use warnings;
-
-require Exporter;
-use AutoLoader qw(AUTOLOAD);
-
-our @ISA = qw(Exporter);
-
-# Items to export into callers namespace by default. Note: do not export
-# names by default without a very good reason. Use EXPORT_OK instead.
-# Do not simply export all your public functions/methods/constants.
-
-# This allows declaration	use Mac::MotionSensor ':all';
-# If you do not need this, moving things directly into @EXPORT or @EXPORT_OK
-# will save memory.
-our %EXPORT_TAGS = ( 'all' => [ qw(
-	
-) ] );
-
-our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
-
-our @EXPORT = qw(
-	
-);
 
 our $VERSION = '0.01';
 
 require XSLoader;
 XSLoader::load('Mac::MotionSensor', $VERSION);
 
-# Preloaded methods go here.
+sub new {
+    my ($class) = @_;
+    
+    my $type = detect_sms() 
+        or
+    die "Couldn't detect a motion sensor";
 
-# Autoload methods go after =cut, and are processed by the autosplit program.
+    my $self = { type => $type };
+
+    bless $self, $class;
+    return $self;
+}
+
+sub x {
+    return _get_x($_[0]->type);
+}
+
+sub y {
+    return _get_y($_[0]->type);
+}
+
+sub z {
+    return _get_z($_[0]->type);
+}
+
+sub raw_x {
+    return _get_raw_x($_[0]->type);
+}
+
+sub raw_y {
+    return _get_raw_y($_[0]->type);
+}
+
+sub raw_z {
+    return _get_raw_z($_[0]->type);
+}
+
+sub type {
+    return $_[0]->{type};
+}
 
 1;
 __END__
-# Below is stub documentation for your module. You'd better edit it!
 
 =head1 NAME
 
-Mac::MotionSensor - Perl extension for blah blah blah
+Mac::MotionSensor - access to your accelerometer
 
 =head1 SYNOPSIS
 
   use Mac::MotionSensor;
-  blah blah blah
+  
+  my $sensor = Mac::MotionSensor->new;
+
+  # scaled output
+  $sensor->x;
+  $sensor->y;
+  $sensor->z;
+
+  # raw output
+  $sensor->raw_x;
+  $sensor->raw_y;
+  $sensor->raw_z;
+
+  $sendor->type;
 
 =head1 DESCRIPTION
 
-Stub documentation for Mac::MotionSensor, created by h2xs. It looks like the
-author of the extension was negligent enough to leave the stub
-unedited.
+This module wraps the UniMotion framework
 
-Blah blah blah.
-
-=head2 EXPORT
-
-None by default.
-
-
+All axis methods returns a signed integer.
 
 =head1 SEE ALSO
 
-Mention other useful documentation such as the documentation of
-related modules or operating system documentation (such as man pages
-in UNIX), or any relevant external documentation such as RFCs or
-standards.
+The UniMotion C library
 
-If you have a mailing list set up for your module, mention it here.
+http://unimotion.sourceforge.net/
 
-If you have a web site set up for your module, mention it here.
+=head1 CONTRIBUTE
+
+http://github.com/robinedwards/Mac-MotionSensor
 
 =head1 AUTHOR
 
-Robin Edwards, E<lt>rob@london.net-a-porter.comE<gt>
+Robin Edwards, E<lt>rge@cpan.orgE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
@@ -85,5 +102,6 @@ This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself, either Perl version 5.12.1 or,
 at your option, any later version of Perl 5 you may have available.
 
+UniMotion is distributed under the LGPL license.
 
 =cut
