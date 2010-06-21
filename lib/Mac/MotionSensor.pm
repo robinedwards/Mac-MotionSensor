@@ -8,8 +8,6 @@ our $VERSION = '0.01';
 
 XSLoader::load('Mac::MotionSensor', $VERSION);
 
-use namespace::clean;
-
 sub new {
     my ($class) = @_;
     

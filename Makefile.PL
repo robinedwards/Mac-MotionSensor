@@ -11,7 +11,6 @@ WriteMakefile(
     NAME              => 'Mac::MotionSensor',
     VERSION_FROM      => 'lib/Mac/MotionSensor.pm', # finds $VERSION
     PREREQ_PM         => {
-        'namespace::clean' => 0,
         'Test::More' => 0,
         'XSLoader' => 0,
     }, 
