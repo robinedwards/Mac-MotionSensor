@@ -7,4 +7,5 @@ unimotion.h
 unimotion.c
 README
 t/00-use.t
+t/api.t
 lib/Mac/MotionSensor.pm
