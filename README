@@ -5,7 +5,7 @@ Provides an interface to the accelerometer available in mac laptops
 
 CREDIT
 
-Thanks to those responsible for the unimotion framework, this module simply wraps there API
+Thanks to those responsible for the unimotion framework, this module simply wraps its API
 
 http://unimotion.sourceforge.net/
 
