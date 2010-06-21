@@ -2,11 +2,13 @@ package Mac::MotionSensor;
 use 5.008008;
 use strict;
 use warnings;
+require XSLoader;
 
 our $VERSION = '0.01';
 
-require XSLoader;
 XSLoader::load('Mac::MotionSensor', $VERSION);
+
+use namespace::clean;
 
 sub new {
     my ($class) = @_;
