@@ -4,7 +4,7 @@ use strict;
 use warnings;
 require XSLoader;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 XSLoader::load('Mac::MotionSensor', $VERSION);
 
@@ -54,7 +54,7 @@ __END__
 
 =head1 NAME
 
-Mac::MotionSensor - access to your accelerometer
+Mac::MotionSensor - Access to your accelerometer
 
 =head1 SYNOPSIS
 
@@ -63,22 +63,26 @@ Mac::MotionSensor - access to your accelerometer
   my $sensor = Mac::MotionSensor->new;
 
   # scaled output
-  $sensor->x;
-  $sensor->y;
-  $sensor->z;
+  my $x = $sensor->x;
+  my $y = $sensor->y;
+  my $z = $sensor->z;
 
   # raw output
-  $sensor->raw_x;
-  $sensor->raw_y;
-  $sensor->raw_z;
+  $x = $sensor->raw_x;
+  $y = $sensor->raw_y;
+  $z = $sensor->raw_z;
 
   $sendor->type;
 
 =head1 DESCRIPTION
 
-This module wraps the UniMotion framework
+This module wraps the UniMotion c library
 
-All axis methods returns a signed integer.
+All axis methods return a signed integer.
+
+=head1 CAVEATS
+
+UniMotion won't build against x86_64, I am working on this issue
 
 =head1 SEE ALSO
 
